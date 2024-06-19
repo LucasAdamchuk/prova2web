@@ -12,17 +12,17 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-export default function NewStudent() {
+export default function NewDirector() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Cadastrar Estudante</Button>
+        <Button>Cadastrar Universidade</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Cadastrar Estudante</DialogTitle>
+          <DialogTitle>Cadastrar Universidade</DialogTitle>
           <DialogDescription>
-           Inclua os dados do estudante e click em salvar.
+           Inclua os dados da universidade e click em salvar.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">

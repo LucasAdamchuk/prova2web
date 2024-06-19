@@ -17,30 +17,32 @@ import { Input } from "@/components/ui/input"
 
 
 const FormSchema = z.object({
-    name: z.string().min(2, {
+    nome: z.string().min(2, {
         message: "Nome precisa ter no mínimo 2 characteres."
     }),
-    email: z.string().email({ message: "Digite o email correto" }),
+    endereco:z.string().min(2, {
+        message: "Endereço precisa ter no mínimo 2 characteres."
+    }),
 })
 
 export default function SaveStudent() {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            name: "Adair",
-            email: "dfads@dfd.com.br"
+            nome: "",
+            endereco: ""
         },
     })
 
-    async function onSubmit(student: z.infer<typeof FormSchema>) {
+    async function onSubmit(university: z.infer<typeof FormSchema>) {
         const requestOption = {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(student)
+            body: JSON.stringify(university)
         }
-      const response = await fetch("https://apiserver20241.vercel.app/students", requestOption)
+      const response = await fetch("https://server20241-sage.vercel.app/university", requestOption)
       form.reset();
-      alert("Estudante Cadastrado com Sucesso!")
+      alert("Universidade Cadastrado com Sucesso!")
 
     }
 
@@ -49,12 +51,12 @@ export default function SaveStudent() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
                 <FormField
                     control={form.control}
-                    name="name"
+                    name="nome"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Nome</FormLabel>
                             <FormControl>
-                                <Input placeholder="Digite o nome do Estudante" {...field} />
+                                <Input placeholder="Digite o nome da Universidade" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -62,12 +64,12 @@ export default function SaveStudent() {
                 />
                 <FormField
                     control={form.control}
-                    name="email"
+                    name="endereco"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Email:</FormLabel>
+                            <FormLabel>Endereco:</FormLabel>
                             <FormControl>
-                                <Input placeholder="Digite o email do Estudante" {...field} />
+                                <Input placeholder="Digite o endereço da Universidade" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
